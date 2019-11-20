@@ -1,5 +1,6 @@
 package com.example.mydiary
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +14,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            val msg: String = year.toString() + month.toString() + dayOfMonth.toString()
+            var msg: String
             runOnUiThread {
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show() //날짜 터치시 알림표시로 나타내기
+                msg = year.toString() + "/" + (month + 1).toString() + "/" + dayOfMonth.toString()
+                intent = Intent(this, DiaryList::class.java)
+                intent.putExtra("date", msg)
+                startActivity(intent)
             }
+
         }
     }
 }
