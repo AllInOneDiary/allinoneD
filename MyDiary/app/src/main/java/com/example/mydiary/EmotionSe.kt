@@ -2,6 +2,7 @@ package com.example.mydiary
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -13,8 +14,10 @@ import java.util.Calendar
 class EmotionSe: AppCompatActivity() {
     var date = ""
     var name =" "
-    var re=0
-    var result =""
+    var sad:Long=0
+    var happy:Long=0
+    var result:Long=0
+    private lateinit var emotion: EmotionModel
     lateinit var root :DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,57 +40,72 @@ class EmotionSe: AppCompatActivity() {
 
         imageButton.setOnClickListener{
             name = "angry"
-            Change()
-            result=""
+            Change(name)
+
             Toast.makeText(this, "angry", Toast.LENGTH_SHORT).show()
 
         }
         imageButton2.setOnClickListener{
             name = "sad"
-            Change()
-            result=""
+            Change(name)
+
             Toast.makeText(this, "sad", Toast.LENGTH_SHORT).show()
 
         }
         imageButton3.setOnClickListener{
             name = "confused"
-            Change()
-            result=""
+            Change(name)
+
             Toast.makeText(this, "confused", Toast.LENGTH_SHORT).show()
 
         }
         imageButton4.setOnClickListener{
             name ="happy"
-            Change()
-            result=""
+            Change(name)
+
             Toast.makeText(this, "happy", Toast.LENGTH_SHORT).show()
 
         }
         imageButton5.setOnClickListener{
             name ="love"
-            Change()
-            result=""
+            Change(name)
+
             Toast.makeText(this, "love", Toast.LENGTH_SHORT).show()
         }
 
-    }
-    fun Change(){
         root.addListenerForSingleValueEvent(object:ValueEventListener {
             override fun onCancelled(p: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
-
             override fun onDataChange(p: DataSnapshot) {
-/*
-                re++
-*/
-                result = p.child(name).getValue().toString()
-                re =Integer.parseInt(result)+1
-                Toast.makeText(this@EmotionSe, re, Toast.LENGTH_SHORT).show()
-
+                emotion = p.getValue(EmotionModel::class.java)!!
             }
 
         })
-        root.child(name).setValue(re)
+    }
+    fun Change(name:String){
+        when(name) {
+            "angry" -> emotion.angry++
+            "confused" -> emotion.confused++
+            "happy" -> emotion.happy++
+            "love" -> emotion.love++
+            "sad" -> emotion.sad++
+        }
+        Toast.makeText(this@EmotionSe, emotion.toString(), Toast.LENGTH_SHORT).show()
+        root.setValue(emotion)
+
+//        if(name.equals("sad")){
+//            sad=result.toInt().toLong()+1
+//            root.child(name).setValue(sad)
+//            Toast.makeText(this@EmotionSe, sad.toString(), Toast.LENGTH_SHORT).show()
+//        }
+//        else if(name.equals("happy")){
+//            happy=result.toInt().toLong()+1
+//            root.child(name).setValue(happy)
+//            Toast.makeText(this@EmotionSe, happy.toString(), Toast.LENGTH_SHORT).show()
+//        }
+
+
+
     }
 }
