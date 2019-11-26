@@ -86,7 +86,6 @@ class EmotionSe: AppCompatActivity() {
                 Toast.makeText(this@EmotionSe, re, Toast.LENGTH_SHORT).show()
 
             }
-
         })
         root.child(name).setValue(re)
     }

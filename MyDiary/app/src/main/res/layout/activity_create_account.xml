@@ -3,8 +3,15 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="새 계정 추가" />
+
     <EditText
-        android:id="@+id/emailText"
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -12,23 +19,24 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/passwd"
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Password(6자 이상)"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/loginbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그인" />
 
     <Button
-        android:id="@+id/btn_create"
-        android:layout_width="match_parent"
+        android:id="@+id/bt_CreateAccount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="새 계정 만들기" />
+        android:text="만들기" />
+
+    <Button
+        android:id="@+id/bt_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소" />
 
 </LinearLayout>
