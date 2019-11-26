@@ -16,14 +16,19 @@
     cl:cl_radius="fitsSmallestChild"
     tools:context=".EmotionSe">
 
-    <TextView
-        android:id="@+id/centerView"
+
+    <!--button to show date picker dialog-->
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How are your feelings?"
-        android:textColor="@android:color/white"
-        android:background="@color/cardview_dark_background"
-        android:textSize="20sp"/>
+        android:id="@+id/centerView"
+        android:text="Get date" />
+    <TextView
+        android:id="@+id/dateTv"
+        android:layout_centerInParent="true"
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -60,4 +65,5 @@
         android:layout_height="70dp"
         android:scaleType="fitCenter"
         android:src="@drawable/love" />
+
 </io.github.francoiscampbell.circlelayout.CircleLayout>
