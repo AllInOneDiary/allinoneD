@@ -80,7 +80,6 @@ class EmotionSe: AppCompatActivity() {
             override fun onDataChange(p: DataSnapshot) {
                 emotion = p.getValue(EmotionModel::class.java)!!
             }
-
         })
     }
     fun Change(name:String){

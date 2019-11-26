@@ -28,8 +28,7 @@
         android:layout_centerInParent="true"
         android:text="Date"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/imageButton"
