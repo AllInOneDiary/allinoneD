@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment.*
+import kotlinx.android.synthetic.main.fragment_d.*
 
 class DFragment : Fragment() {
 
@@ -15,13 +16,13 @@ class DFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment, container, false)
+        return inflater.inflate(R.layout.fragment_d, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        fragmentImage.setImageResource(R.drawable.bubble01)
+        fragmentImageD.setImageResource(R.drawable.bubble01)
     }
 
 }
