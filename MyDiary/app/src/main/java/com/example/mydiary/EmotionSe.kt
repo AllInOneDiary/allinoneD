@@ -13,55 +13,60 @@ import java.util.Calendar
 class EmotionSe: AppCompatActivity() {
     var date = ""
     var name =" "
-    var re:Long=0
+    var re=0
     var result =""
     lateinit var root :DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.emotion_select)
 
-
+        val mPickTimeBtn = findViewById<Button>(R.id.centerView)
+        val textView = findViewById<TextView>(R.id.dateTv)
 
         val c = java.util.Calendar.getInstance()
         val year = c.get(java.util.Calendar.YEAR)
         val month = c.get(java.util.Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
+        mPickTimeBtn.setOnClickListener{
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, year, monthOfYear, dayOfMonth -> textView.setText(" "+year+"년" +(monthOfYear+1) +"월 "+dayOfMonth+"일 ")}, year,month,day)
+            dpd.show()
+        }
 
         root = FirebaseDatabase.getInstance().reference.child("Emotion")
 
         imageButton.setOnClickListener{
             name = "angry"
-
             Change()
-
+            result=""
             Toast.makeText(this, "angry", Toast.LENGTH_SHORT).show()
 
         }
         imageButton2.setOnClickListener{
             name = "sad"
             Change()
-
+            result=""
             Toast.makeText(this, "sad", Toast.LENGTH_SHORT).show()
 
         }
         imageButton3.setOnClickListener{
             name = "confused"
             Change()
-
+            result=""
             Toast.makeText(this, "confused", Toast.LENGTH_SHORT).show()
 
         }
         imageButton4.setOnClickListener{
             name ="happy"
             Change()
+            result=""
             Toast.makeText(this, "happy", Toast.LENGTH_SHORT).show()
 
         }
         imageButton5.setOnClickListener{
             name ="love"
             Change()
-
+            result=""
             Toast.makeText(this, "love", Toast.LENGTH_SHORT).show()
         }
 
@@ -73,11 +78,12 @@ class EmotionSe: AppCompatActivity() {
             }
 
             override fun onDataChange(p: DataSnapshot) {
-                result=""
-                re=0
+/*
+                re++
+*/
                 result = p.child(name).getValue().toString()
-                re = (result.toInt()+1).toLong()
-                Toast.makeText(this@EmotionSe, re.toString(), Toast.LENGTH_SHORT).show()
+                re =Integer.parseInt(result)+1
+                Toast.makeText(this@EmotionSe, re, Toast.LENGTH_SHORT).show()
 
             }
 
