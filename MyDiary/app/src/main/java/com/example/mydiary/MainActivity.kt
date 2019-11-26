@@ -1,24 +1,22 @@
 package com.example.mydiary
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import com.example.mydiary.ui.main.SectionsPagerAdapter
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
 
+        calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            val msg: String = year.toString() + month.toString() + dayOfMonth.toString()
+            runOnUiThread {
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show() //날짜 터치시 알림표시로 나타내기
+            }
+        }
     }
 }
