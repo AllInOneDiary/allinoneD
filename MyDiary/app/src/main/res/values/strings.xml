@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyDiary</string>
+    <string name="tab_text_1">캘린더</string>
+    <string name="tab_text_2">일기목록</string>
+    <string name="tab_text_3">감정선택</string>
+    <string name="action_settings">Settings</string>
 </resources>
