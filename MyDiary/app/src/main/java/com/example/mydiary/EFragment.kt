@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment.*
 import kotlinx.android.synthetic.main.fragment_b.*
-import kotlinx.android.synthetic.main.fragment_e.*
 
 class EFragment : Fragment() {
 
@@ -17,13 +16,13 @@ class EFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_e, container, false)
+        return inflater.inflate(R.layout.fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        fragmentImageE.setImageResource(R.drawable.bubble01)
+        fragmentImage.setImageResource(R.drawable.bubble01)
     }
 
 }
