@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.mydiary.Calendar
-import com.example.mydiary.Emotion
 import com.example.mydiary.R
 
 private val TAB_TITLES = arrayOf(
@@ -25,8 +24,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         when(position){
             0 -> {return Calendar()}
             1 -> {return Calendar()}
-            2 -> {return Emotion()}
-
+            2 -> {return Calendar()}
         }
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
