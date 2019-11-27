@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private val TAG : String = "MainActivity"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +36,12 @@ class MainActivity : AppCompatActivity() {
                     task -> if(task.isSuccessful){
                     Log.d(TAG,"signInWithEmail:success")
                     val user = auth.currentUser
+                    UserModel.email = email.text.toString()
+                    UserModel.password = password.text.toString()
+                    if (user != null) {
+                        UserModel.uid = user.uid
+                    }
+                    Log.d(TAG, "UserModel.email = ${UserModel.email}\nUserModel.password = ${UserModel.password}")
                     updateUI(user)
                     val intent = Intent(this, ViewPage::class.java)
                     startActivity(intent)

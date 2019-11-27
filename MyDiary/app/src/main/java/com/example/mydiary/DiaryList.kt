@@ -22,7 +22,9 @@ data class Diary(
     var title : String = "",
     var contents : String = ""
 )
+
 class DiaryList: AppCompatActivity() {
+
     var date = ""
     var yearMonth:String = ""
     var day: String = ""
@@ -41,6 +43,7 @@ class DiaryList: AppCompatActivity() {
         if(intent.hasExtra("date")) {
             date = intent.getStringExtra("date") // 2019/11/18 형식
             yearMonth = date.split("/")[0] + date.split("/")[1]
+            day = date.split("/")[2]
             supportActionBar?.title = date // 날짜를 toolbar의 타이틀로 넣는다
         }
 
@@ -81,14 +84,15 @@ class DiaryList: AppCompatActivity() {
         var dataInput = Diary(editTitle.text.toString(), textContent.text.toString()) // title = editTitle의 내용, content = textContent의 내용
         yearMonth = date.split("/")[0] + date.split("/")[1]
         day = date.split("/")[2]
-        diaryRef = root.child(yearMonth)
+        diaryRef = root.child(UserModel.uid)
+        var dR = diaryRef.child(yearMonth)
 
         val store = mutableMapOf(day to dataInput)
-        diaryRef.updateChildren(store as Map<String, Any>).addOnCompleteListener { task ->
+        dR.updateChildren(store as Map<String, Any>).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this@DiaryList, "저장이 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
-//                val i = Intent(applicationContext, MainActivity::class.java)
-//                startActivity(i)
+                val i = Intent(applicationContext, ViewPage::class.java)
+                startActivity(i)
             } else {
                 Toast.makeText(this@DiaryList, "저장에 실패했습니다::(", Toast.LENGTH_LONG).show()
             }
@@ -101,7 +105,7 @@ class DiaryList: AppCompatActivity() {
         root.child(yearMonth).child(day).removeValue().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this@DiaryList, "삭제가 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
-                val i = Intent(applicationContext, MainActivity::class.java)
+                val i = Intent(applicationContext, ViewPage::class.java)
                 startActivity(i)
             } else {
                 Toast.makeText(this@DiaryList, "삭제가 실패했습니다::(", Toast.LENGTH_LONG).show()

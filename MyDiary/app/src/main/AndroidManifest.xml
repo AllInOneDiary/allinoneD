@@ -29,17 +29,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".AFragment"></activity>
-        <activity android:name=".BFragment"></activity>
-        <activity android:name=".CFragment"></activity>
-        <activity android:name=".DFragment"></activity>
-        <activity android:name=".EFragment"></activity>
-        <activity android:name=".FFragment"></activity>
-        <activity android:name=".GFragment"></activity>
-        <activity android:name=".HFragment"></activity>
-        <activity android:name=".IFragment"></activity>
-        <activity android:name=".JFragment"></activity>
-        <activity android:name=".ZFragment"></activity>
         <activity android:name=".PutPicture"></activity>
     </application>
 
