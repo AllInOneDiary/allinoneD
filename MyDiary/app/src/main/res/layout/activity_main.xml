@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
+        android:text="asd@naver.com"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Password"
+        android:text="qwer1234"
         android:inputType="textPassword" />
 
     <Button

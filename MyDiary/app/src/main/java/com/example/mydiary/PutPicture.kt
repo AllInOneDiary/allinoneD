@@ -1,25 +1,7 @@
 package com.example.mydiary
-
-import android.app.Activity
-import android.content.ClipData
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.PermissionChecker
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment.*
-import kotlinx.android.synthetic.main.fragment_b.*
-import java.io.File
-import java.lang.Exception
-import java.net.URI
-import java.util.jar.Manifest
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import kotlinx.android.synthetic.main.putpicture.*
 
 
