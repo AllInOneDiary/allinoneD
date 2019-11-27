@@ -87,8 +87,8 @@ class DiaryList: AppCompatActivity() {
         diaryRef.updateChildren(store as Map<String, Any>).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this@DiaryList, "저장이 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
-//                val i = Intent(applicationContext, MainActivity::class.java)
-//                startActivity(i)
+                val i = Intent(applicationContext, MainActivity::class.java)
+                startActivity(i)
             } else {
                 Toast.makeText(this@DiaryList, "저장에 실패했습니다::(", Toast.LENGTH_LONG).show()
             }
