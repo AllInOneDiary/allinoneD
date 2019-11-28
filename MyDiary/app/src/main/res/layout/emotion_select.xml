@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00949090"
+    android:background="@android:color/black"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -27,6 +27,7 @@
         android:id="@+id/dateTv"
         android:layout_centerInParent="true"
         android:text="Date"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -35,28 +36,32 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/angry" />
+        android:src="@drawable/angry"
+        android:background="@android:color/black" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/sad" />
+        android:src="@drawable/sad"
+        android:background="@android:color/black" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/confused" />
+        android:src="@drawable/confused"
+        android:background="@android:color/black" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/happy" />
+        android:src="@drawable/happy"
+        android:background="@android:color/black" />
 
 
     <ImageButton
@@ -64,6 +69,8 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/love" />
+        android:src="@drawable/love"
+        android:background="@android:color/black" />
+
 
 </io.github.francoiscampbell.circlelayout.CircleLayout>

@@ -74,12 +74,15 @@ class Calendar : Fragment() {
                         i.putExtra("date", msg)
                         startActivity(i)
                     }
-                    R.id.emotion ->
+                    R.id.emotion ->{
                         Toast.makeText(
                             getContext(),
                             "You Clicked : " + item.title,
                             Toast.LENGTH_SHORT
                         ).show()
+                        val intent = Intent(getContext(), EmotionSe::class.java)
+                        startActivity(intent)
+                    }
                 }
                 true
             })

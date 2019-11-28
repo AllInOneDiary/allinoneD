@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="0dp"
@@ -29,6 +30,7 @@
             android:gravity="center"
             android:textSize="30dp"
             android:fontFamily="@font/font1"/>
+
         <com.github.mikephil.charting.charts.PieChart
             android:layout_width="match_parent"
             android:layout_height="500dp"
