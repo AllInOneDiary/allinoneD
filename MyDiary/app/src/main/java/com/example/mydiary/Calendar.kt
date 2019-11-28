@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.calendar.view.*
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.util.Calendar
 
 class Calendar : Fragment() {
 
@@ -30,13 +31,29 @@ class Calendar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val inf = inflater.inflate(R.layout.calendar, container, false)
-        inf.calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
+        inf.calendarView.setOnDayClickListener{
 
+            var date =it.calendar.time.toString().split(" ")
+            var year = date[date.size-1].toInt()
+            var month_temp = date[1]
+            var dayOfMonth=date[2].toInt()
+            var month:Int=0
+            when(month_temp){
+                "Jan"-> month=1
+                "Feb" -> month =2
+                "Mar"->month=3
+                "Apr"->month=4
+                "May"->month=5
+                "Jun"->month=6
+                "Jul"->month=7
+                "Aug"->month=8
+                "Sept"->month=9
+                "Oct"->month=10
+                "Nov"->month=11
+                "Dec"->month=12
+            }
 
-            var month = month + 1
-
-            val msg: String =
-                year.toString() + "/" + month.toString() + "/" + dayOfMonth.toString()
+             val msg =  year.toString() + "/" + month.toString() + "/" + dayOfMonth.toString()
 
             val popupMenu: PopupMenu = PopupMenu(getContext(), view)
             popupMenu.menuInflater.inflate(R.menu.option_menu, popupMenu.menu)
