@@ -1,115 +1,82 @@
 package com.example.mydiary
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.renderscript.Sampler
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Tasks
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.FirebaseApp
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.content_diary.*
-import java.security.AccessController.getContext
+import kotlinx.android.synthetic.main.diary_list.view.*
 
-data class Diary(
-    var title : String = "",
-    var contents : String = ""
-)
-
-class DiaryList: AppCompatActivity() {
-
-    var date = ""
-    var yearMonth:String = ""
-    var day: String = ""
+class DiaryList : Fragment(), AdapterView.OnItemSelectedListener {
+    @SuppressLint("ResourceType")
     lateinit var root:DatabaseReference
-    lateinit var diaryRef : DatabaseReference
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.diary)
-
-        root = FirebaseDatabase.getInstance().reference.child("Diary")
-
-        var toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        if(intent.hasExtra("date")) {
-            date = intent.getStringExtra("date") // 2019/11/18 형식
-            yearMonth = date.split("/")[0] + date.split("/")[1]
-            day = date.split("/")[2]
-            supportActionBar?.title = date // 날짜를 toolbar의 타이틀로 넣는다
+    lateinit var yearSpinner:Spinner
+    lateinit var monthSpinner:Spinner
+    lateinit var yearAdapter : Adapter
+    lateinit var monthAdapter : Adapter
+    var yearMonth:String = ""
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val inf = inflater.inflate(R.layout.diary_list, container, false)
+        root = FirebaseDatabase.getInstance().reference
+            .child("Diary").child(UserModel.uid)
+        yearSpinner = inf.spinner_year
+        yearAdapter = ArrayAdapter.createFromResource(
+            context,
+            R.array.date_year,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            yearSpinner.adapter = adapter
         }
-
-        var fab = findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener{moveToPricture()}
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val menuInflater: MenuInflater = getMenuInflater()
-        menuInflater.inflate(R.menu.diary_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item != null) {
-            return when (item.itemId) {
-                R.id.save -> {
-                    saveDiary(date)
-                    true
+        yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when(position) {
+                    0 -> yearMonth += 2016
+                    1 -> yearMonth += 2017
+                    2 -> yearMonth += 2018
+                    3 -> yearMonth += 2019
+                    4 -> yearMonth += 2020
                 }
-                R.id.delete -> {
-                    deleteDiary(date)
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
         }
-        return false
-    }
 
-    fun moveToPricture(){
-        var intent = Intent(this, PutPicture::class.java)
-        intent.putExtra("date", date)
-        startActivity(intent)
-    }
+        monthSpinner = inf.spinner_month
+        monthAdapter = ArrayAdapter.createFromResource(
+            context,
+            R.array.date_month,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            monthSpinner.adapter = adapter
+        }
+        monthSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-    fun saveDiary(date:String) {
-        var dataInput = Diary(editTitle.text.toString(), textContent.text.toString()) // title = editTitle의 내용, content = textContent의 내용
-        yearMonth = date.split("/")[0] + date.split("/")[1]
-        day = date.split("/")[2]
-        diaryRef = root.child(UserModel.uid)
-        var dR = diaryRef.child(yearMonth)
+            }
 
-        val store = mutableMapOf(day to dataInput)
-        dR.updateChildren(store as Map<String, Any>).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(this@DiaryList, "저장이 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
-                val i = Intent(applicationContext, ViewPage::class.java)
-                startActivity(i)
-            } else {
-                Toast.makeText(this@DiaryList, "저장에 실패했습니다::(", Toast.LENGTH_LONG).show()
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
             }
         }
+        return inf
     }
 
-    fun deleteDiary(date:String) {
-        yearMonth = date.split("/")[0] + date.split("/")[1]
-        day = date.split("/")[2]
-        root.child(yearMonth).child(day).removeValue().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(this@DiaryList, "삭제가 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
-                val i = Intent(applicationContext, ViewPage::class.java)
-                startActivity(i)
-            } else {
-                Toast.makeText(this@DiaryList, "삭제가 실패했습니다::(", Toast.LENGTH_LONG).show()
-            }
-        }// 201911이 루트라고 생각하면 됨.
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

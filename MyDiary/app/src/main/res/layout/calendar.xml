@@ -28,7 +28,7 @@
         tools:ignore="MissingConstraints"
         />
 
-    <CalendarView
+    <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
