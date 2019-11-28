@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".Calendar"
     tools:visibility="visible"
-    android:background="@android:color/black">
-
+    android:background="@android:color/black"
+    android:id="@+id/calendarLayout">
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="0dp"
@@ -28,7 +28,7 @@
         tools:ignore="MissingConstraints"
         />
 
-    <com.applandeo.materialcalendarview.CalendarView
+    <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -67,126 +67,27 @@
             app:layout_constraintTop_toBottomOf="@+id/calendarView"
             app:layout_constraintVertical_bias="1.0">-->
 
-    <TextView
-        android:id="@+id/calendarTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"/>
-
-    <TextView
-        android:id="@+id/diaryTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-    <EditText
-        android:id="@+id/contextEditText"
-        android:layout_width="0dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="내용을 입력하세요."
-        android:textColorHint="@android:color/white"
-        android:theme="@style/AppTheme"
-        android:inputType="textMultiLine"
-        android:textColor="@android:color/white"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diaryTextView" />
-
-    <TextView
-        android:id="@+id/textView2"
+    <include
+        android:id="@+id/schedule"
+        layout="@layout/add_schedule"
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:visibility="invisible"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/contextEditText"
-        app:layout_constraintTop_toTopOf="@+id/contextEditText" />
-
-    <Button
-        android:id="@+id/cha_Btn"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="수정"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/save_Btn"
-        app:layout_constraintEnd_toStartOf="@+id/del_Btn"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/del_Btn"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="삭제"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cha_Btn"
-        app:layout_constraintEnd_toEndOf="@+id/save_Btn" />
-
-
-    <!--
-        </LinearLayout>
-    -->
-
-    <Button
-        android:id="@+id/save_Btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="저장"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contextEditText" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+    <include
+        android:id="@+id/emotion"
+        layout="@layout/emotion_select"
+        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="548dp" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
