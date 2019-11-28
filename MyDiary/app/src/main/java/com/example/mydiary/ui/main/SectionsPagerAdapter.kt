@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.mydiary.Calendar
 import com.example.mydiary.Emotion
+import com.example.mydiary.DiaryList
 import com.example.mydiary.R
 
 private val TAB_TITLES = arrayOf(
@@ -24,7 +25,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     override fun getItem(position: Int): Fragment {
         when(position){
             0 -> {return Calendar()}
-            1 -> {return Calendar()}
+            1 -> {return DiaryList()}
             2 -> {return Emotion()}
 
         }
