@@ -23,18 +23,13 @@ class EmotionSe: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.emotion_select)
 
-        val mPickTimeBtn = findViewById<Button>(R.id.centerView)
-        val textView = findViewById<TextView>(R.id.dateTv)
 
         val c = java.util.Calendar.getInstance()
         val year = c.get(java.util.Calendar.YEAR)
         val month = c.get(java.util.Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        mPickTimeBtn.setOnClickListener{
-            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, year, monthOfYear, dayOfMonth -> textView.setText(" "+year+"년" +(monthOfYear+1) +"월 "+dayOfMonth+"일 ")}, year,month,day)
-            dpd.show()
-        }
+
 
         root = FirebaseDatabase.getInstance().reference.child("Emotion")
 
@@ -93,16 +88,7 @@ class EmotionSe: AppCompatActivity() {
         Toast.makeText(this@EmotionSe, emotion.toString(), Toast.LENGTH_SHORT).show()
         root.setValue(emotion)
 
-//        if(name.equals("sad")){
-//            sad=result.toInt().toLong()+1
-//            root.child(name).setValue(sad)
-//            Toast.makeText(this@EmotionSe, sad.toString(), Toast.LENGTH_SHORT).show()
-//        }
-//        else if(name.equals("happy")){
-//            happy=result.toInt().toLong()+1
-//            root.child(name).setValue(happy)
-//            Toast.makeText(this@EmotionSe, happy.toString(), Toast.LENGTH_SHORT).show()
-//        }
+
 
 
 

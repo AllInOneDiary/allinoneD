@@ -1,76 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<io.github.francoiscampbell.circlelayout.CircleLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cl="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".EmotionSe"
+    tools:visibility="visible"
     android:background="@android:color/black"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    cl:cl_angleOffset="90"
-    cl:cl_centerView="@+id/centerView"
-    cl:cl_direction="counterClockwise"
-    cl:cl_radius="fitsSmallestChild"
-    tools:context=".EmotionSe">
+    android:id="@+id/emotionLayout"
+    >
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0.25dp" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="0.75dp" />
     <!--button to show date picker dialog-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/centerView"
-        android:text="Get date" />
-    <TextView
-        android:id="@+id/dateTv"
-        android:layout_centerInParent="true"
-        android:text="Date"
-        android:textColor="@android:color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:background="@android:color/black"
         android:scaleType="fitCenter"
         android:src="@drawable/angry"
-        android:background="@android:color/black" />
+        android:text="Get date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:background="@android:color/black"
         android:scaleType="fitCenter"
         android:src="@drawable/sad"
-        android:background="@android:color/black" />
+        android:text="Get date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:background="@android:color/black"
         android:scaleType="fitCenter"
         android:src="@drawable/confused"
-        android:background="@android:color/black" />
+        android:text="Get date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:background="@android:color/black"
         android:scaleType="fitCenter"
         android:src="@drawable/happy"
-        android:background="@android:color/black" />
-
+        android:text="Get date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <ImageButton
         android:id="@+id/imageButton5"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:background="@android:color/black"
         android:scaleType="fitCenter"
         android:src="@drawable/love"
-        android:background="@android:color/black" />
+        android:text="Get date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
 
-</io.github.francoiscampbell.circlelayout.CircleLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
