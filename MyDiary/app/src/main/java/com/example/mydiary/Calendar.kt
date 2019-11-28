@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.calendar.*
@@ -42,7 +43,7 @@ class Calendar : Fragment() {
             popupMenu.menuInflater.inflate(R.menu.option_menu, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.schedule ->{
+                    R.id.schedule -> {
                         Toast.makeText(
                             getContext(),
                             "You Clicked : " + item.title,
@@ -57,7 +58,8 @@ class Calendar : Fragment() {
                         cha_Btn.visibility = View.INVISIBLE //수정 버튼이 invisible
                         del_Btn.visibility = View.INVISIBLE //삭제 버튼이 invisible
 
-                        diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
+                        diaryTextView.text =
+                            String.format("%d / %d / %d", year, month + 1, dayOfMonth)
 //날짜를 보여주는 텍스트에 해달 날짜를 넣는다.
                         contextEditText.setText("")//EditText에 공백값 넣
 
@@ -70,7 +72,7 @@ class Calendar : Fragment() {
                             "You Clicked : " + item.title,
                             Toast.LENGTH_SHORT
                         ).show()
-                        val i = Intent(getContext(), DiaryList::class.java)
+                        val i = Intent(getContext(), WriteDiary::class.java)
                         i.putExtra("date", msg)
                         startActivity(i)
                     }
@@ -94,7 +96,7 @@ class Calendar : Fragment() {
             save_Btn.setOnClickListener {
                 //저장 버튼이 클릭되면
                 saveDiary(fname) //saveDiary 메소드 호출
-                Toast.makeText(activity,fname + "데이터를 저장했습니다.",Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, fname + "데이터를 저장했습니다.", Toast.LENGTH_LONG).show()
                 str = contextEditText.getText().toString() // str 변수에 edittext내용을 toString
 //형으로 저장
                 textView2.text = "${str}" // textView에 str 출력
@@ -157,7 +159,7 @@ class Calendar : Fragment() {
                 cha_Btn.visibility = View.INVISIBLE
                 del_Btn.visibility = View.INVISIBLE
                 removeDiary(fname)
-                Toast.makeText(activity,fname + "데이터를 삭제했습니다.",Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, fname + "데이터를 삭제했습니다.", Toast.LENGTH_LONG).show()
             }
 
             if (textView2.getText() == "") {
@@ -180,7 +182,10 @@ class Calendar : Fragment() {
         var fos: FileOutputStream? = null
 
         try {
-            fos = activity?.openFileOutput(readyDay,MODE_NO_LOCALIZED_COLLATORS) // MODE_NO_LOCALIZED_COLLATORS
+            fos = activity?.openFileOutput(
+                readyDay,
+                MODE_NO_LOCALIZED_COLLATORS
+            ) // MODE_NO_LOCALIZED_COLLATORS
             var content: String = contextEditText.getText().toString()
             fos?.write(content.toByteArray())
             fos?.close()
