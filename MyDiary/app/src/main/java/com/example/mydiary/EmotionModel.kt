@@ -1,9 +1,9 @@
 package com.example.mydiary
 
-class EmotionModel() {
-    var angry: Int = 0
-    var confused: Int = 0
-    var happy: Int = 0
-    var love: Int = 0
-    var sad: Int = 0
+object EmotionModel {
+    var angry: Float =0F
+    var confused: Float = 0F
+    var happy: Float = 0F
+    var love: Float = 0F
+    var sad: Float = 0F
 }

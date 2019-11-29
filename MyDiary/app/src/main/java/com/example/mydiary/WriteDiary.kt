@@ -1,39 +1,38 @@
 package com.example.mydiary
 
 import android.app.Activity
-import android.content.Context
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import com.google.android.gms.tasks.OnSuccessListener
-import android.renderscript.Sampler
-import android.util.Log
+
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.NonNull
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Tasks
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.FirebaseApp
+
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.content_diary.*
-import kotlinx.android.synthetic.main.putpicture.*
+
 import java.lang.Exception
-import java.security.AccessController.getContext
+
 
 data class Diary(
     var title : String = "",
     var contents : String = ""
 )
+
 class WriteDiary: AppCompatActivity() {
     private val adapter by lazy { SlideAdapter(supportFragmentManager) }
     var file : Uri? = null
