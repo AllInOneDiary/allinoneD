@@ -5,28 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EmotionSe"
+    tools:context=".Calendar"
     tools:visibility="visible"
     android:background="@android:color/black"
-    android:id="@+id/emotionLayout"
-    >
+    android:id="@+id/emotionLayout">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="0.25dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="0.75dp" />
-    <!--button to show date picker dialog-->
-
-
+<!--    <TextView-->
+<!--        android:layout_width="20dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        android:/>-->
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="70dp"
@@ -62,7 +50,7 @@
         android:src="@drawable/confused"
         android:text="Get date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
@@ -75,7 +63,7 @@
         android:src="@drawable/happy"
         android:text="Get date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintHorizontal_bias="0.759"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 

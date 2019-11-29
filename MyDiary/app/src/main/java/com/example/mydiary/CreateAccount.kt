@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_create_account.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class CreateAccount : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -20,16 +19,12 @@ class CreateAccount : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         //사용자가 입력한 값들
-//        var email: String = et_email.text.toString()
-//        var password: String = et_password.text.toString()
         val email = findViewById<EditText>(R.id.et_email)
         val password = findViewById<EditText>(R.id.et_password)
 
 
         //새로운 계정을 생성한다.
         bt_CreateAccount.setOnClickListener {
-            //Log.d(TAG, "Data: " + email.text + password.text)
-
             if (email.text.toString().length == 0 || password.text.toString().length == 0) {
                 Toast.makeText(this, "email 혹은 password를 반드시 입력하세요.", Toast.LENGTH_SHORT).show()
             } else {
