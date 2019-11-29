@@ -9,24 +9,47 @@
     tools:visibility="visible"
     android:background="@android:color/black"
     android:id="@+id/calendarLayout">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0.25dp" />
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calendar"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/font2"
-        tools:layout_editor_absoluteX="177dp"
-        android:textColor="@android:color/white"
-        tools:ignore="MissingConstraints"
-        />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textMsg"
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:fontFamily="@font/font1"
+            android:text="이상한 나라의 앨리스 - 내 기분은 내가 정해. 오늘 나는 행복으로 할래."
+            android:textColor="@android:color/white"
+            android:textSize="25dp" />
+
+        <ImageButton
+            android:id="@+id/nextTXT"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/black"
+            android:scaleType="fitCenter"
+            android:src="@drawable/next_text"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
 
     <CalendarView
         android:id="@+id/calendarView"

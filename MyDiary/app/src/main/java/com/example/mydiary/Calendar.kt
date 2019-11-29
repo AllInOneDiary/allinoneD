@@ -8,21 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.*
+import com.google.firebase.database.core.view.Change
 import kotlinx.android.synthetic.main.add_schedule.*
 import kotlinx.android.synthetic.main.add_schedule.view.*
 import kotlinx.android.synthetic.main.calendar.*
 import kotlinx.android.synthetic.main.calendar.view.*
 import kotlinx.android.synthetic.main.emotion_select.*
+import kotlinx.android.synthetic.main.emotion_select.imageButton
+import kotlinx.android.synthetic.main.emotion_select.view.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.util.*
 
 class Calendar : Fragment() {
 
     var fname: String = ""
     var str: String = ""
+
+    var name =" "
+
+    lateinit var rootT: DatabaseReference
+    lateinit var txtRef : DatabaseReference
 
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -31,7 +42,8 @@ class Calendar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
+        rootT = FirebaseDatabase.getInstance().reference
+        txtRef =rootT.child("text")
 //        val appendDay = inflater.inflate(R.layout.add_schedule,container,false)
 //        container?.calendarLayout?.addView(appendDay)
         //val inf = schedule
@@ -39,14 +51,35 @@ class Calendar : Fragment() {
         //emotionLayout.visibility = View.INVISIBLE
         val inf = inflater.inflate(R.layout.calendar, container, false)
         with(inf) {
+            textMsg.setSelected(true)
+
+            nextTXT.setOnClickListener {
+
+                var listener =object :ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(p1: DataSnapshot) {
+                        val random = Random()
+                        val num = random.nextInt(5)
+                        val arr = arrayOfNulls<String>(5)
+                        var i =0
+                        for(text in p1.children){
+                            arr[i]=text.value.toString()
+                            i++
+                        }
+                        textMsg.setText(arr[num])
+                    }
+                }
+                txtRef.addValueEventListener(listener)
+            }
+
             schedule.visibility = View.VISIBLE
             calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                diaryTextView.visibility = View.INVISIBLE
-                save_Btn.visibility = View.INVISIBLE
-                cha_Btn.visibility = View.INVISIBLE
-                del_Btn.visibility = View.INVISIBLE
-                contextEditText.visibility = View.INVISIBLE
-                textView2.visibility = View.INVISIBLE
+                emotion.visibility = View.GONE
+                schedule.visibility = View.GONE
+
                 var month = month + 1
 
                 val msg: String =
@@ -102,6 +135,7 @@ class Calendar : Fragment() {
                             ).show()
                             emotion.visibility = View.VISIBLE
                             schedule.visibility = View.GONE
+
 //                            val intent = Intent(getContext(), EmotionSe::class.java)
 //                            startActivity(intent)
                         }
@@ -137,8 +171,6 @@ class Calendar : Fragment() {
             }
         }
 
-
-
         return inf
     }
 
@@ -151,7 +183,7 @@ class Calendar : Fragment() {
         try {
             fis = activity?.openFileInput(fname) // fname 파일 오픈!!
 
-            val fileData = fis?.available()?.let { ByteArray(it) } // fileData에 파이트 형식
+            val fileData = fis?.available()?.let { ByteArray(it) } // fileData에 바이트 형식
 //으로 저장
 
             fis?.read(fileData)
