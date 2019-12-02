@@ -8,13 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.TextView
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 
-import com.google.firebase.database.core.view.Change
 
 import kotlinx.android.synthetic.main.add_schedule.*
 import kotlinx.android.synthetic.main.add_schedule.view.*
@@ -23,7 +21,6 @@ import kotlinx.android.synthetic.main.calendar.view.*
 import kotlinx.android.synthetic.main.emotion_select.*
 
 import kotlinx.android.synthetic.main.emotion_select.imageButton
-import kotlinx.android.synthetic.main.emotion_select.view.*
 
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -32,7 +29,6 @@ import java.util.*
 class Calendar : Fragment() {
     lateinit var root: DatabaseReference
     var name = " "
-
     var fname: String = ""
     var str: String = ""
 
@@ -48,16 +44,8 @@ class Calendar : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         rootT = FirebaseDatabase.getInstance().reference
         txtRef = rootT.child("text")
-//        val appendDay = inflater.inflate(R.layout.add_schedule,container,false)
-//        container?.calendarLayout?.addView(appendDay)
-        //val inf = schedule
-
-        //emotionLayout.visibility = View.INVISIBLE
-
         val inf = inflater.inflate(R.layout.calendar, container, false)
         with(inf) {
             textMsg.setSelected(true)
@@ -66,9 +54,7 @@ class Calendar : Fragment() {
 
                 var listener = object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
-
                     }
-
                     override fun onDataChange(p1: DataSnapshot) {
                         val random = Random()
                         val num = random.nextInt(5)
@@ -83,14 +69,10 @@ class Calendar : Fragment() {
                 }
                 txtRef.addValueEventListener(listener)
             }
-
             schedule.visibility = View.VISIBLE
-
-
                 calendarView?.setOnDateChangeListener { view, y, m, d ->
                     emotion.visibility = View.GONE
                     schedule.visibility = View.GONE
-
 
                     month = m + 1
                     year = y
@@ -130,7 +112,6 @@ class Calendar : Fragment() {
                                 startActivity(i)
                             }
                             R.id.emotion -> {
-
                                 Toast.makeText(
                                     getContext(),
                                     "You Clicked : " + item.title,
@@ -139,16 +120,12 @@ class Calendar : Fragment() {
                                 emotion.visibility = View.VISIBLE
                                 schedule.visibility = View.GONE
 
-//                            val intent = Intent(getContext(), EmotionSe::class.java)
-//                            startActivity(intent)
-
                                 emotionSelect()
 
                             }
                         }
                         true
                     })
-
 
                     with(schedule) {
                         diaryTextView.visibility = View.INVISIBLE
@@ -172,10 +149,8 @@ class Calendar : Fragment() {
                             textView2.visibility = View.VISIBLE
                         }
                     }
-
                 }
             }
-
             return inf
         }
 
@@ -262,11 +237,9 @@ class Calendar : Fragment() {
 
     }
 
-
     @SuppressLint("WrongConstant")
     fun removeDiary(readyDay: String) {
         var fos: FileOutputStream? = null
-
         try {
             fos = activity?.openFileOutput(readyDay, MODE_NO_LOCALIZED_COLLATORS)//MODE_PRIVATE
             var content: String = ""
@@ -276,8 +249,6 @@ class Calendar : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-
     }
 
     fun emotionSelect() {
@@ -317,7 +288,6 @@ class Calendar : Fragment() {
 
             Toast.makeText(getContext(), "love", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 
