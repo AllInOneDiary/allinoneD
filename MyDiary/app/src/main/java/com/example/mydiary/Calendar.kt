@@ -12,13 +12,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.add_schedule.*
+
+
 import kotlinx.android.synthetic.main.add_schedule.view.*
 import kotlinx.android.synthetic.main.calendar.*
+
 
 import kotlinx.android.synthetic.main.calendar.view.*
 import kotlinx.android.synthetic.main.emotion_select.*
 
-import kotlinx.android.synthetic.main.emotion_select.imageButton
 
 import java.io.FileOutputStream
 import java.util.*
@@ -30,7 +32,6 @@ data class Schedule(
 class Calendar : Fragment() {
     lateinit var root: DatabaseReference
     var name = " "
-
     var fname: String = ""
     var str: String = ""
 
@@ -39,7 +40,7 @@ class Calendar : Fragment() {
 
     lateinit var SchRef: DatabaseReference
 
-    var comment:String = ""
+    var comment: String = ""
 
 
     var year = 0
@@ -51,6 +52,7 @@ class Calendar : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
 
         rootT = FirebaseDatabase.getInstance().reference.child(UserModel.uid)
         txtRef = FirebaseDatabase.getInstance().reference.child("text")
@@ -79,8 +81,8 @@ class Calendar : Fragment() {
                 }
                 txtRef.addValueEventListener(listener)
             }
-
             schedule.visibility = View.VISIBLE
+
 
             calendarView?.setOnDateChangeListener { view, y, m, d ->
                 emotion.visibility = View.GONE
@@ -100,7 +102,6 @@ class Calendar : Fragment() {
                         R.id.schedule -> {
                             //달력 날짜 선택 후 일정 버튼을 누르면
                             scheduleCheck()
-
                         }
                         R.id.diary -> {
                             val i = Intent(getContext(), WriteDiary::class.java)
@@ -108,7 +109,6 @@ class Calendar : Fragment() {
                             startActivity(i)
                         }
                         R.id.emotion -> {
-
                             Toast.makeText(
                                 getContext(),
                                 "You Clicked : " + item.title,
@@ -123,7 +123,6 @@ class Calendar : Fragment() {
                     }
                     true
                 })
-
 
                 with(schedule) {
                     diaryTextView.visibility = View.INVISIBLE
@@ -175,6 +174,7 @@ class Calendar : Fragment() {
         }
         return inf
     }
+
     fun scheduleCheck(){
         val sche=rootT.child("Schedule").child("$year$month").child(day.toString())
         sche.addValueEventListener(object : ValueEventListener {
@@ -239,7 +239,6 @@ class Calendar : Fragment() {
         SchRef = rootT.child("Schedule").child("$year$month").child(day.toString())
         SchRef.removeValue()
         var fos: FileOutputStream? = null
-
         try {
             fos = activity?.openFileOutput(readyDay, MODE_NO_LOCALIZED_COLLATORS)//MODE_PRIVATE
             var content: String = ""
@@ -249,7 +248,6 @@ class Calendar : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
     fun emotionSelect() {
@@ -289,7 +287,6 @@ class Calendar : Fragment() {
 
             Toast.makeText(getContext(), "love", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 

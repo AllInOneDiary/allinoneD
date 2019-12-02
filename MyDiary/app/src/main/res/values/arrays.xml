@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="date_year">
+    <string-array name="date_year" >
+        <item>년</item>
         <item>2016</item>
         <item>2017</item>
         <item>2018</item>
@@ -9,6 +10,7 @@
     </string-array>
 
     <string-array name="date_month">
+        <item>월</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

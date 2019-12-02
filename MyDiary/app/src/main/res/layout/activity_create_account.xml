@@ -2,57 +2,55 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/black">
+    android:background="#EAE9DA">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
-        android:layout_height="280dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <TextView
             android:id="@+id/newID"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/font3"
+            android:layout_height="110dp"
+            android:fontFamily="@font/font1"
             android:gravity="center"
             android:text="Sign Up"
-            android:textColor="#50651B"
-            android:textSize="40sp" />
+
+            android:textColor="#BAAFA1"
+            android:textSize="45sp" />
 
         <EditText
             android:id="@+id/et_email"
-            android:layout_width="255dp"
-            android:layout_height="70dp"
+            android:layout_width="245dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Email"
+            android:gravity="center"
             android:inputType="textEmailAddress"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:theme="@style/AppTheme" />
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@android:color/black" />
 
         <EditText
             android:id="@+id/et_password"
-            android:layout_width="255dp"
-            android:layout_height="70dp"
+            android:layout_width="245dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:ems="10"
-            android:hint="Password(6자 이상)"
+            android:hint="Password"
+            android:gravity="center"
             android:inputType="textPassword"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:theme="@style/AppTheme" />
+            android:textColor="@android:color/black"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -62,22 +60,22 @@
 
             <Button
                 android:id="@+id/bt_CreateAccount"
-                android:layout_width="72dp"
-                android:layout_height="match_parent"
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/login_button"
-                android:text="OK"
-                android:textColor="@android:color/black" />
+                android:text="Ok"
+                android:textColor="#BAAFA1" />
 
             <Button
                 android:id="@+id/bt_cancel"
-                android:layout_width="72dp"
+                android:layout_width="103dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/login_button"
-                android:text="cancel"
-                android:textColor="@android:color/black" />
+                android:text="Cancel"
+                android:textColor="#BAAFA1" />
         </LinearLayout>
 
     </LinearLayout>

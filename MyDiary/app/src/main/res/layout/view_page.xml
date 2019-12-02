@@ -24,9 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:tabTextColor="@android:color/white"
-            app:tabSelectedTextColor="@android:color/darker_gray"
-            android:background="@android:color/black"/>
+            android:fontFamily="@font/font4"
+            app:tabTextColor="#EAE9DA"
+            app:tabSelectedTextColor="@android:color/white"
+            android:background="#BAAFA1"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

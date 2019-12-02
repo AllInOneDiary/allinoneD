@@ -7,14 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".Calendar"
     tools:visibility="visible"
-    android:background="@android:color/black"
+    android:background="#EAE9DA"
     android:id="@+id/emotionLayout">
 
-<!--    <TextView-->
-<!--        android:layout_width="20dp"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        android:/>-->
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="70dp"
@@ -56,8 +51,8 @@
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:background="@android:color/black"
         android:scaleType="fitCenter"
         android:src="@drawable/happy"
