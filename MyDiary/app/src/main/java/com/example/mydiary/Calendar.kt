@@ -142,7 +142,7 @@ class Calendar : Fragment() {
                         save_Btn.visibility = View.INVISIBLE
                         cha_Btn.visibility = View.VISIBLE
                         del_Btn.visibility = View.VISIBLE
-                        contextEditText.visibility = View.INVISIBLE
+                        contextEditText.visibility = View.VISIBLE
                         textView2.visibility = View.VISIBLE
 
                     }

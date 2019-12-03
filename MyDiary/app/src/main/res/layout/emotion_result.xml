@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     android:background="#EAE9DA"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="감정 그래프"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:fontFamily="@font/font1"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:fontFamily="@font/font4"
+        android:gravity="center"
+        android:text="감정 그래프"
+        android:textSize="40dp" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
