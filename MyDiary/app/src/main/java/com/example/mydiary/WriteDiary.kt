@@ -1,15 +1,12 @@
 package com.example.mydiary
 
 import android.app.Activity
-
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import com.google.android.gms.tasks.OnSuccessListener
 import android.util.Log
-
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -79,9 +76,15 @@ class WriteDiary : AppCompatActivity() {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.hasChild(day)) {
+                        if(dataSnapshot.child(day).child("title").value != null) {
+                            title = dataSnapshot.child(day).child("title").value.toString()
+                            content = dataSnapshot.child(day).child("contents").value.toString()
+                        } else {
+                            title = ""
+                            content = ""
+                        }
                         title = dataSnapshot.child(day).child("title").value.toString()
                         content = dataSnapshot.child(day).child("contents").value.toString()
-
                         editTitle.text.clear()
                         textContent.text.clear()
                         editTitle.text.append(title)
@@ -92,7 +95,6 @@ class WriteDiary : AppCompatActivity() {
                         imageUrl = dataSnapshot.child(day).child("url").value.toString()
                         if(!imageUrl.equals("")) {
                             val imageRefChild = imageRef.child(imageUrl)
-
                             GlideApp.with(this@WriteDiary).load(imageRefChild).into(fragmentImage)
                         }
                     } else {
@@ -212,6 +214,7 @@ class WriteDiary : AppCompatActivity() {
                     setDataFile(file)
                     var frag = findViewById<ImageView>(R.id.fragmentImage)
                     //upload(filePath)
+
                     frag.setImageURI(file)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -257,4 +260,3 @@ class WriteDiary : AppCompatActivity() {
         } else {}
     }
 }
-

@@ -12,11 +12,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0.25dp" />
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@id/guideline1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -66,8 +68,9 @@
         <ListView
             android:id="@+id/diarylistview"
             android:layout_width="match_parent"
-            android:layout_height="591dp" />
+            android:layout_height="509dp" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"
