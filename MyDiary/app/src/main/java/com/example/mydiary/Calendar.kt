@@ -34,7 +34,7 @@ class Calendar : Fragment() {
     var name = " "
     var fname: String = ""
     var str: String = ""
-
+    var textSave =""
     lateinit var rootT: DatabaseReference
     lateinit var txtRef: DatabaseReference
 
@@ -137,24 +137,24 @@ class Calendar : Fragment() {
                         Toast.makeText(activity, fname + "데이터를 저장했습니다.", Toast.LENGTH_LONG)
                             .show()
                         str = contextEditText.getText()
-                            .toString() // str 변수에 edittext내용을 toString 형으로 저장
+                            .toString()
+                      // str 변수에 edittext내용을 toString 형으로 저장
                         textView2.text = "${str}" // textView에 str 출력
                         save_Btn.visibility = View.INVISIBLE
                         cha_Btn.visibility = View.VISIBLE
                         del_Btn.visibility = View.VISIBLE
-                        contextEditText.visibility = View.INVISIBLE
+                        contextEditText.visibility = View.VISIBLE
                         textView2.visibility = View.VISIBLE
 
                     }
                     cha_Btn.setOnClickListener {
                         // 수정 버튼을 누를 시
+                        saveDiary(fname)
                         contextEditText.visibility = View.VISIBLE
                         textView2.visibility = View.INVISIBLE
-                        contextEditText.setText(str) // editText에 textView에 저장된 내용을 출력
-                        save_Btn.visibility = View.VISIBLE
-                        cha_Btn.visibility = View.INVISIBLE
-                        del_Btn.visibility = View.INVISIBLE
-                        textView2.text = "${contextEditText.getText()}"
+                        contextEditText.setText(textSave) // editText에 textView에 저장된 내용을 출력
+                        cha_Btn.visibility = View.VISIBLE
+                        del_Btn.visibility = View.VISIBLE
                     }
 
                     del_Btn.setOnClickListener {
@@ -181,8 +181,8 @@ class Calendar : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 schedule.visibility = View.VISIBLE
                 if(p0.getValue()!=null){
-                    val attach_txt=p0.getValue().toString()
-                    contextEditText.setText(attach_txt)
+                    textSave=p0.getValue().toString()
+                    contextEditText.setText(textSave)
                     with(schedule){
 
                         save_Btn.visibility = View.INVISIBLE  //저장 버튼이 Visible
