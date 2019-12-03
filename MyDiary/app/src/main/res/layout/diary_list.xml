@@ -1,67 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
-
+    android:background="#EAE9DA">
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0.25dp" />
-
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@id/guideline1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/fab_margin"
-            android:text="일기 목록"
-            android:textColor="@android:color/darker_gray"
             android:textSize="20dp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:text="일기 목록"
+            android:textColor="@android:color/darker_gray"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <Spinner
                 android:id="@+id/spinner_year"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="3"
-                android:background="@android:color/white"
-                android:entries="@array/date_year" />
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:entries="@array/date_year"
+                android:background="@drawable/btn"/>
 
             <Spinner
                 android:id="@+id/spinner_month"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="3"
-                android:background="@android:color/white"
-                android:entries="@array/date_month" />
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:entries="@array/date_month"
+                android:background="@drawable/btn"/>
 
             <Button
                 android:id="@+id/search_diary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="80dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="3"
+                android:background="@drawable/btn"
                 android:text="조회" />
         </LinearLayout>
-
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
@@ -72,13 +68,10 @@
             android:layout_width="match_parent"
             android:layout_height="203dp" />
     </LinearLayout>
-
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="0.75dp" />
+        app:layout_constraintGuide_end="0.75dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,15 @@
 package com.example.mydiary
 
 import android.app.Activity
+
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import com.google.android.gms.tasks.OnSuccessListener
 import android.util.Log
+
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,8 +18,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
 import com.example.mydiary.ui.main.GlideApp
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*

@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="0.25dp" />
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="56dp"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/guideline1"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        android:orientation="vertical">-->
+    android:layout_height="match_parent"
+    android:background="#EAE9DA"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -31,30 +12,44 @@
             android:textSize="30dp"
             android:fontFamily="@font/font1"/>
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="100dp"
-            android:id="@+id/pieChart">
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="100dp">
 
-        </com.github.mikephil.charting.charts.PieChart>
+    </com.github.mikephil.charting.charts.PieChart>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/emo_select"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:clickable="true"
-            app:backgroundTint="#FFEB3B"
-            app:srcCompat="@android:drawable/ic_input_add"/>
+    <Spinner
+        android:id="@+id/chart_spinner_y"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="650dp"
+        android:layout_weight="3"
+        android:background="@drawable/btn"
+        android:entries="@array/date_year" />
+
+    <Spinner
+        android:id="@+id/chart_spinner_m"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_weight="3"
+        android:background="@drawable/btn"
+        android:entries="@array/date_month"
+        android:layout_marginTop="650dp"
+        android:layout_marginLeft="155dp"
+        />
 
 
-<!--    </LinearLayout>-->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="0.75dp"/>
+    <Button
+        android:id="@+id/search_chart"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="650dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn"
+        android:text="조회" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
