@@ -118,11 +118,11 @@ class WriteDiary : AppCompatActivity() {
         if (item != null) {
             return when (item.itemId) {
                 R.id.save -> {
-                    saveDiary(date)
+                    saveDiary()
                     true
                 }
                 R.id.delete -> {
-                    deleteDiary(date)
+                    deleteDiary()
                     true
                 }
                 else -> super.onOptionsItemSelected(item)
@@ -132,7 +132,7 @@ class WriteDiary : AppCompatActivity() {
     }
 
 
-    fun saveDiary(date: String) {
+    fun saveDiary() {
         diaryRef = root.child("Diary")
         var dR = diaryRef.child(yearMonth)
         upload(getDataFile())
@@ -154,17 +154,27 @@ class WriteDiary : AppCompatActivity() {
         }
     }
 
-    fun deleteDiary(date: String) {
+    fun deleteDiary() {
         diaryRef = root.child("Diary").child(yearMonth).child(day)
-        diaryRef.removeValue().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(this@WriteDiary, "삭제가 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
-                val i = Intent(applicationContext, ViewPage::class.java)
-                startActivity(i)
-            } else {
-                Toast.makeText(this@WriteDiary, "삭제가 실패했습니다::(", Toast.LENGTH_LONG).show()
+        diaryRef.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if(dataSnapshot.hasChildren()) {
+                    diaryRef.removeValue().addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this@WriteDiary, "삭제가 완료되었습니다:D!!", Toast.LENGTH_LONG).show()
+                            val i = Intent(applicationContext, ViewPage::class.java)
+                            startActivity(i)
+                        } else {
+                            Toast.makeText(this@WriteDiary, "삭제가 실패했습니다::(", Toast.LENGTH_LONG).show()
+                        }
+                    }// 201911이 루트라고 생각하면 됨.
+                } else {
+                    Toast.makeText(this@WriteDiary, "해당 일자에는 일기가 없습니다.", Toast.LENGTH_SHORT).show()
+                }
             }
-        }// 201911이 루트라고 생각하면 됨.
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
+
     }
 
 
