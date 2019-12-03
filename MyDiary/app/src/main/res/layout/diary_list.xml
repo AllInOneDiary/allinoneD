@@ -66,7 +66,7 @@
         <ListView
             android:id="@+id/diarylistview"
             android:layout_width="match_parent"
-            android:layout_height="203dp" />
+            android:layout_height="591dp" />
     </LinearLayout>
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"

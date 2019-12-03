@@ -58,10 +58,11 @@ class DiaryList : Fragment() {
             ) {
                 when (position) {
                     0 -> yearMonth = "2016"
-                    1 -> yearMonth = "2017"
-                    2 -> yearMonth = "2018"
-                    3 -> yearMonth = "2019"
-                    4 -> yearMonth = "2020"
+                    1 -> yearMonth = "2016"
+                    2 -> yearMonth = "2017"
+                    3 -> yearMonth = "2018"
+                    4 -> yearMonth = "2019"
+                    5 -> yearMonth = "2020"
                 }
                 Toast.makeText(context, yearMonth, Toast.LENGTH_LONG).show()
             }
@@ -87,10 +88,10 @@ class DiaryList : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                yearMonth += position + 1
+                yearMonth += position
                 Toast.makeText(context, yearMonth, Toast.LENGTH_LONG).show()
-            }
 
+            }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 yearMonth = "20161"
             }
@@ -110,29 +111,30 @@ class DiaryList : Fragment() {
             ////////////////////////////////////////////////////////////
 
 
-            diaryRoot = FirebaseDatabase.getInstance().reference.child(UserModel.uid).child("Diary").child(yearMonth)
-
+            diaryRoot = FirebaseDatabase.getInstance().reference.child(UserModel.uid).child("Diary")
             diaryRoot.addValueEventListener(object: ValueEventListener{
                 @Override
                 override fun onDataChange(dataSnapshot: DataSnapshot) { // 201911
-                    diaryList.clear()/*
-                    diaryadapter.notifyDataSetInvalidated()*/
+                    if(dataSnapshot.hasChild(yearMonth)) {
+                        var dataChild = dataSnapshot.child(yearMonth)
+                        diaryList.clear()
 
-                    /*var i : Int = 0*/
-                    for(child in dataSnapshot.children){ // 1, 2, ...
-                        val title = child.child("title").value.toString()
-                        val date = yearMonth
-                        val content = child.child("contents").value.toString()
-                        Log.i("title",title)
-                        Log.i("date", date)
-                        Log.i("content", content)
+                        for (child in dataChild.children) { // 1, 2, ...
+                            val title = child.child("title").value.toString()
+                            val date = yearMonth
+                            val content = child.child("contents").value.toString()
+                            Log.i("title", title)
+                            Log.i("date", date)
+                            Log.i("content", content)
 
-                        diaryList.add(DiaryListViewItem(title, content, date))
-                        Toast.makeText(context, diaryList.get(0).title, Toast.LENGTH_LONG).show()
+                            diaryList.add(DiaryListViewItem(title, content, date))
+                            Toast.makeText(context, diaryList.get(0).title, Toast.LENGTH_LONG)
+                                .show()
+                        }
+                        diaryadapter.notifyDataSetChanged()
                     }
-                    diaryadapter.notifyDataSetChanged()
-
-                    //Toast.makeText(context, "짜잔!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show()
+                    else
+                     Toast.makeText(context, "해당 달의 일기 목록이 존재하지 않습니다", Toast.LENGTH_SHORT).show()
                 }
 
                 @Override
