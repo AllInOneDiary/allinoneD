@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAE9DA"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="감정 그래프"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:fontFamily="@font/font1"/>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="100dp">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
+    <Spinner
+        android:id="@+id/chart_spinner_y"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="650dp"
+        android:layout_weight="3"
+        android:background="@drawable/btn"
+        android:entries="@array/date_year" />
+
+    <Spinner
+        android:id="@+id/chart_spinner_m"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_weight="3"
+        android:background="@drawable/btn"
+        android:entries="@array/date_month"
+        android:layout_marginTop="650dp"
+        android:layout_marginLeft="155dp"
+        />
+
+
+    <Button
+        android:id="@+id/search_chart"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="650dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn"
+        android:text="조회" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
