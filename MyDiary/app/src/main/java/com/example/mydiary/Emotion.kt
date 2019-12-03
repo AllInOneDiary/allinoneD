@@ -143,7 +143,7 @@ class Emotion : Fragment() {
         val dataSet = PieDataSet(yValues, "기분 변화")
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
-        dataSet.setColors(*ColorTemplate.JOYFUL_COLORS)
+        dataSet.setColors(*ColorTemplate.PASTEL_COLORS)
 
         val data = PieData(dataSet)
         data.setValueTextSize(10f)
