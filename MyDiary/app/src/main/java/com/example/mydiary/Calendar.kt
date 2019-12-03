@@ -13,14 +13,11 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.add_schedule.*
 
-
 import kotlinx.android.synthetic.main.add_schedule.view.*
 import kotlinx.android.synthetic.main.calendar.*
 
-
 import kotlinx.android.synthetic.main.calendar.view.*
 import kotlinx.android.synthetic.main.emotion_select.*
-
 
 import java.io.FileOutputStream
 import java.util.*
@@ -142,7 +139,7 @@ class Calendar : Fragment() {
                         save_Btn.visibility = View.INVISIBLE
                         cha_Btn.visibility = View.VISIBLE
                         del_Btn.visibility = View.VISIBLE
-                        contextEditText.visibility = View.INVISIBLE
+                        contextEditText.visibility = View.VISIBLE
                         textView2.visibility = View.VISIBLE
 
                     }

@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.diary_list.view.*
+import java.util.*
 
 class DiaryList : Fragment(), AdapterView.OnItemSelectedListener {
     @SuppressLint("ResourceType")
@@ -23,7 +24,11 @@ class DiaryList : Fragment(), AdapterView.OnItemSelectedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         val inf = inflater.inflate(R.layout.diary_list, container, false)
+
+
         root = FirebaseDatabase.getInstance().reference
             .child("Diary").child(UserModel.uid)
         yearSpinner = inf.spinner_year
