@@ -12,6 +12,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0.25dp" />
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@id/guideline1"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,7 +26,7 @@
             android:padding="@dimen/fab_margin"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:text="일기 목록"
+            android:text="사진 목록"
             android:fontFamily="@font/font4"
             android:textColor="@android:color/darker_gray"/>
         <LinearLayout
@@ -58,8 +59,17 @@
                 android:layout_weight="3"
                 android:background="@drawable/btn"
                 android:text="조회" />
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+        <ListView
+            android:id="@+id/searchlist"
+            android:layout_width="match_parent"
+            android:layout_height="509dp" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"

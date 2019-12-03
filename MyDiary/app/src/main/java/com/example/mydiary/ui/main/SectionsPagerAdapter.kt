@@ -4,15 +4,13 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.mydiary.Calendar
-import com.example.mydiary.Emotion
-import com.example.mydiary.DiaryList
-import com.example.mydiary.R
+import com.example.mydiary.*
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
     R.string.tab_text_2,
-    R.string.tab_text_3
+    R.string.tab_text_3,
+    R.string.tab_text_4
 )
 
 /**
@@ -27,6 +25,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
             0 -> {return Calendar()}
             1 -> {return DiaryList()}
             2 -> {return Emotion()}
+            3 -> {return SearchHash()}
 
         }
         // getItem is called to instantiate the fragment for the given page.
@@ -40,6 +39,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 3
+        return 4
     }
 }

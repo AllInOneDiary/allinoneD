@@ -3,6 +3,7 @@
     <string name="tab_text_1">캘린더</string>
     <string name="tab_text_2">일기목록</string>
     <string name="tab_text_3">감정그래프</string>
+    <string name="tab_text_4">해시태그검색</string>
     <string name="action_settings">Settings</string>
 
     <string name="email">이메일</string>
