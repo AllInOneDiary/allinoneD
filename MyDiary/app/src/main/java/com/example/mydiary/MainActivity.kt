@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val currentUser =auth.currentUser
         updateUI(currentUser)
+
     }
 
     override fun onStart(){

@@ -15,14 +15,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
 import com.example.mydiary.ui.main.GlideApp
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.add_schedule.*
 import kotlinx.android.synthetic.main.content_diary.*
 import kotlinx.android.synthetic.main.fragment.*
 import java.lang.Exception
@@ -86,6 +83,8 @@ class WriteDiary : AppCompatActivity() {
                             title = ""
                             content = ""
                         }
+                        title = dataSnapshot.child(day).child("title").value.toString()
+                        content = dataSnapshot.child(day).child("contents").value.toString()
                         editTitle.text.clear()
                         textContent.text.clear()
                         editTitle.text.append(title)
@@ -175,10 +174,7 @@ class WriteDiary : AppCompatActivity() {
                     Toast.makeText(this@WriteDiary, "해당 일자에는 일기가 없습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-
-            }
+            override fun onCancelled(databaseError: DatabaseError) {}
         })
 
     }
@@ -254,7 +250,6 @@ class WriteDiary : AppCompatActivity() {
     var tagMap = mutableMapOf<String, Any>()
 
     fun putTag(filename: String) {
-
         if (!tag.text.equals("")) {
             var tmp = tag.text.trim().split("#")
             for (i in 1..tmp.size - 1) {
