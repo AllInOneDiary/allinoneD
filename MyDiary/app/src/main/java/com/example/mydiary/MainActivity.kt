@@ -9,6 +9,7 @@ import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.mydiary.ui.main.DiaryListViewAdapter
 import com.example.mydiary.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val currentUser =auth.currentUser
         updateUI(currentUser)
+
     }
 
     override fun onStart(){
