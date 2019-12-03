@@ -1,5 +1,4 @@
 package com.example.mydiary
-
 import android.annotation.SuppressLint
 import android.content.Context.MODE_NO_LOCALIZED_COLLATORS
 import android.content.Intent
@@ -24,25 +23,19 @@ import kotlinx.android.synthetic.main.emotion_select.*
 
 import java.io.FileOutputStream
 import java.util.*
-
 data class Schedule(
     var comment : String = ""
 )
-
 class Calendar : Fragment() {
     lateinit var root: DatabaseReference
     var name = " "
     var fname: String = ""
     var str: String = ""
-
+    var textSave =""
     lateinit var rootT: DatabaseReference
     lateinit var txtRef: DatabaseReference
-
     lateinit var SchRef: DatabaseReference
-
     var comment: String = ""
-
-
     var year = 0
     var month = 0
     var day = 0
@@ -52,8 +45,6 @@ class Calendar : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         rootT = FirebaseDatabase.getInstance().reference.child(UserModel.uid)
         txtRef = FirebaseDatabase.getInstance().reference.child("text")
 
@@ -62,11 +53,9 @@ class Calendar : Fragment() {
         with(inf) {
             textMsg.setSelected(true)
             nextTXT.setOnClickListener {
-
                 var listener = object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
                     }
-
                     override fun onDataChange(p1: DataSnapshot) {
                         val random = Random()
                         val num = random.nextInt(5)
@@ -82,8 +71,6 @@ class Calendar : Fragment() {
                 txtRef.addValueEventListener(listener)
             }
             schedule.visibility = View.VISIBLE
-
-
             calendarView?.setOnDateChangeListener { view, y, m, d ->
                 emotion.visibility = View.GONE
                 schedule.visibility = View.GONE
@@ -137,7 +124,8 @@ class Calendar : Fragment() {
                         Toast.makeText(activity, fname + "데이터를 저장했습니다.", Toast.LENGTH_LONG)
                             .show()
                         str = contextEditText.getText()
-                            .toString() // str 변수에 edittext내용을 toString 형으로 저장
+                            .toString()
+                        // str 변수에 edittext내용을 toString 형으로 저장
                         textView2.text = "${str}" // textView에 str 출력
                         save_Btn.visibility = View.INVISIBLE
                         cha_Btn.visibility = View.VISIBLE
@@ -148,13 +136,12 @@ class Calendar : Fragment() {
                     }
                     cha_Btn.setOnClickListener {
                         // 수정 버튼을 누를 시
+                        saveDiary(fname)
                         contextEditText.visibility = View.VISIBLE
                         textView2.visibility = View.INVISIBLE
-                        contextEditText.setText(str) // editText에 textView에 저장된 내용을 출력
-                        save_Btn.visibility = View.VISIBLE
-                        cha_Btn.visibility = View.INVISIBLE
-                        del_Btn.visibility = View.INVISIBLE
-                        textView2.text = "${contextEditText.getText()}"
+                        contextEditText.setText(textSave) // editText에 textView에 저장된 내용을 출력
+                        cha_Btn.visibility = View.VISIBLE
+                        del_Btn.visibility = View.VISIBLE
                     }
 
                     del_Btn.setOnClickListener {
@@ -181,8 +168,8 @@ class Calendar : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 schedule.visibility = View.VISIBLE
                 if(p0.getValue()!=null){
-                    val attach_txt=p0.getValue().toString()
-                    contextEditText.setText(attach_txt)
+                    textSave=p0.getValue().toString()
+                    contextEditText.setText(textSave)
                     with(schedule){
 
                         save_Btn.visibility = View.INVISIBLE  //저장 버튼이 Visible
@@ -249,47 +236,34 @@ class Calendar : Fragment() {
             e.printStackTrace()
         }
     }
-
     fun emotionSelect() {
         root = FirebaseDatabase.getInstance().reference.child(UserModel.uid)
-
         imageButton.setOnClickListener {
             name = "angry"
             Change(name)
-
             Toast.makeText(getContext(), "angry", Toast.LENGTH_SHORT).show()
-
         }
         imageButton2.setOnClickListener {
             name = "sad"
             Change(name)
-
             Toast.makeText(getContext(), "sad", Toast.LENGTH_SHORT).show()
-
         }
         imageButton3.setOnClickListener {
             name = "confused"
             Change(name)
-
             Toast.makeText(getContext(), "confused", Toast.LENGTH_SHORT).show()
-
         }
         imageButton4.setOnClickListener {
             name = "happy"
             Change(name)
-
             Toast.makeText(getContext(), "happy", Toast.LENGTH_SHORT).show()
-
         }
         imageButton5.setOnClickListener {
             name = "love"
             Change(name)
-
             Toast.makeText(getContext(), "love", Toast.LENGTH_SHORT).show()
         }
-
     }
-
     fun Change(name: String) {
         val emotionRef = root.child("Diary").child("$year$month").child("$day").child("emotion")
         emotionRef.setValue(name)
