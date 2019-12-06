@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".DiaryList"
-    tools:showIn="@layout/diary">
+    tools:showIn="@layout/diary"
+    android:background="#EAE9DA">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -29,7 +30,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="#968d81"
             android:minHeight="?attr/actionBarSize"
             app:titleTextColor="#ffffff" />
 

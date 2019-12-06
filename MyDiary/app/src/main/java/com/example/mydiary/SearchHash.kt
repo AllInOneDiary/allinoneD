@@ -2,7 +2,6 @@ package com.example.mydiary
 import android.annotation.SuppressLint
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,6 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
                 return true
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Log.i(tag, "query:"+ query.toString())
                 hash = query.toString()
                 hashRef.addListenerForSingleValueEvent(object: ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -48,10 +46,8 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
                             val myRef = dataSnapshot.child(hash)
                             for(i in myRef.children) {
                                 hashValue = i.value.toString()
-                                Log.i(tag, hashValue)
                                 hashArray.add(Hash(hash, hashValue))
                             }
-                            Log.i(tag, hashArray.toString())
                         } else {
                             Toast.makeText(context, "'${hash}' 에 해당하는 태그가 존재하지 않습니다:(", Toast.LENGTH_SHORT).show()
                         }

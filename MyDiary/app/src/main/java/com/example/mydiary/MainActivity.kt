@@ -2,7 +2,6 @@ package com.example.mydiary
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 
@@ -30,20 +29,17 @@ class MainActivity : AppCompatActivity() {
             }else{
                 auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener(this){
                     task -> if(task.isSuccessful){
-                    Log.d(TAG,"signInWithEmail:success")
                     val user = auth.currentUser
                     UserModel.email = email.text.toString()
                     UserModel.password = password.text.toString()
                     if (user != null) {
                         UserModel.uid = user.uid
                     }
-                    Log.d(TAG, "UserModel.email = ${UserModel.email}\nUserModel.password = ${UserModel.password}")
                     updateUI(user)
                     val intent = Intent(this, ViewPage::class.java)
                     startActivity(intent)
                 }else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                     updateUI(null)

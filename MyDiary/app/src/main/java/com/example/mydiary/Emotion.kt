@@ -2,7 +2,6 @@ package com.example.mydiary
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -82,7 +81,6 @@ class Emotion : Fragment() {
         inf.search_chart1.setOnClickListener {
             emotionResult(yearMonth)
 
-            Log.d(tag,yearMonth)
             Toast.makeText(getContext(),yearMonth,Toast.LENGTH_LONG)
         }
 

@@ -59,7 +59,17 @@
                 android:background="@drawable/btn"
                 android:text="조회" />
         </LinearLayout>
+
+        <ListView
+            android:id="@+id/diarylistview"
+            android:layout_width="match_parent"
+            android:layout_height="510dp"
+            android:listSelector="#dddccb"
+            android:choiceMode="singleChoice"
+            android:divider="#968d81"
+            android:dividerHeight="1.5dp" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"
