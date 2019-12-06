@@ -2,6 +2,7 @@ package com.example.mydiary
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,36 +71,13 @@ class DiaryList : Fragment(){
             }
         }
 
-        monthSpinner = inf.spinner_month
-        monthAdapter = ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.date_month,
-            android.R.layout.simple_spinner_dropdown_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            monthSpinner.adapter = adapter
-        }
-        monthSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                month = position.toString()
-                Toast.makeText(context, year+month, Toast.LENGTH_LONG).show()
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                year = "2016"
-                month = "1"
-            }
-        }
-
         diaryadapter = DiaryListViewAdapter(context, diaryList)
         diarySearch = inf.diarylistview
         diarySearch.adapter = diaryadapter
         // click button
         inf.search_diary.setOnClickListener(View.OnClickListener {
+            Toast.makeText(context, year+month, Toast.LENGTH_SHORT).show()
+
             diaryRoot = FirebaseDatabase.getInstance().reference.child(UserModel.uid).child("Diary")
             diaryRoot.addValueEventListener(object: ValueEventListener{
                 @Override

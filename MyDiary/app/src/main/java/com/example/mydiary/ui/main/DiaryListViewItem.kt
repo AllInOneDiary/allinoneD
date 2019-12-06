@@ -1,6 +1,5 @@
 package com.example.mydiary.ui.main
 
-
 class DiaryListViewItem{
     var title = ""
     var content = ""

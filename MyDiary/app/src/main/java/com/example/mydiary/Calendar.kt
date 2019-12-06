@@ -120,7 +120,7 @@ class Calendar : Fragment() {
                             .show()
                         str = contextEditText.getText()
                             .toString()
-                        // str 변수에 edittext내용을 toString 형으로 저장
+
                         textView2.text = "${str}" // textView에 str 출력
                         save_Btn.visibility = View.INVISIBLE
                         cha_Btn.visibility = View.VISIBLE

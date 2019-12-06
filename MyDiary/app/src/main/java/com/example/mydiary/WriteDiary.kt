@@ -123,6 +123,10 @@ class WriteDiary: AppCompatActivity() {
 
 
     fun saveDiary(date:String) {
+        if(editTitle.text.toString().equals("") && textContent.text.toString().equals("")) {
+            Toast.makeText(this@WriteDiary, "빈칸을 다 채워주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
         var dataInput = Diary(editTitle.text.toString(), textContent.text.toString()) // title = editTitle의 내용, content = textContent의 내용
         diaryRef = root.child("Diary")
         var dR = diaryRef.child(yearMonth)
