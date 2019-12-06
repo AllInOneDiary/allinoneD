@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                     task -> if(task.isSuccessful){
                     val user = auth.currentUser
                     UserModel.email = email.text.toString()
-                    UserModel.password = password.text.toString()
                     if (user != null) {
                         UserModel.uid = user.uid
                     }

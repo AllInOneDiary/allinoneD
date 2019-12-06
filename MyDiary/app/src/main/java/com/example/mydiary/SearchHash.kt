@@ -14,6 +14,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.search_layout.view.*
 
 data class Hash(val hashtag:String, val url:String)
+
 class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
     lateinit var hashRef: DatabaseReference // 해시태그 레퍼런스(Picutre 아래의 Hash를 가리킴)
     val hashArray = ArrayList<Hash>() // 검색한 해시와 해시의 사진 url을 저장하는 배열
@@ -30,7 +31,7 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
         val inf = inflater.inflate(R.layout.search_layout, container, false)
         hashRef = FirebaseDatabase.getInstance().reference.child(UserModel.uid).child("Picture").child("Hash")
 
-        val hashAdapter = HashListAdatper(context, hashArray)
+        val hashAdapter = HashListAdatper(requireContext(), hashArray)
         inf.searchlist.adapter = hashAdapter
         inf.searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -55,8 +56,7 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
+                   }
 
                 })
                 return false
@@ -66,11 +66,9 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
         return inf
     }
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

@@ -5,19 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import com.example.mydiary.ui.main.GlideApp
+import com.google.firebase.storage.FirebaseStorage
 
 class HashListAdatper(val context: Context?, val hashArray:ArrayList<Hash>) : BaseAdapter()  {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View = LayoutInflater.from(context).inflate(R.layout.hash_item, null)
 
         val hashTag = view.findViewById<TextView>(R.id.titleText)
-        val hashValue = view.findViewById<TextView>(R.id.urlText)
-
         val hash = hashArray[position]
 
         hashTag.text = hash.hashtag
-        hashValue.text = hash.url
+        val hashValue = hash.url
+
+        val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://mydiary-1121.appspot.com")
+        val image = view.findViewById<ImageView>(R.id.searchItem)
+
+        if(!hashValue.equals(null) && !hashValue.equals("")&&context != null) {
+            val imageRefChild = imageRef.child(hashValue)
+            GlideApp.with(context).load(imageRefChild).into(image)
+        }
 
         return view
     }

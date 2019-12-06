@@ -80,8 +80,6 @@ class Emotion : Fragment() {
         }
         inf.search_chart1.setOnClickListener {
             emotionResult(yearMonth)
-
-            Toast.makeText(getContext(),yearMonth,Toast.LENGTH_LONG)
         }
 
         return inf

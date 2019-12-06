@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_create_account.*
 
 class CreateAccount : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private val TAG : String = "CreateAccount"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,20 +30,14 @@ class CreateAccount : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            val user = auth.currentUser
-                            //updateUI(user)
-                            // 아니면 액티비티를 닫아 버린다.
+
                             finish()
                             overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit)
                         } else {
-                            // If sign in fails, display a message to the user.
                             Toast.makeText(
                                 baseContext, "Authentication failed.",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            //updateUI(null)
-                            //입력필드 초기화
                             email?.setText("")
                             password?.setText("")
                             email.requestFocus()

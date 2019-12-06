@@ -4,11 +4,12 @@ class DiaryListViewItem{
     var title = ""
     var content = ""
     var date = ""
-
-    constructor(title: String, content: String, date: String){
+    var day = ""
+    constructor(title: String, content: String, date: String, day: String){
         this.title = title
         this.content = content
         this.date = date
+        this.day = day
     }
 
     fun getDiaryTitle(): String{

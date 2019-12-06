@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.mydiary.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.auth.FirebaseAuth
+
 
 class ViewPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
