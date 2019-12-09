@@ -1,8 +1,8 @@
 package com.example.mydiary
 
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -55,13 +55,10 @@ class ViewDiary : AppCompatActivity() {
                     content = dataSnapshot.child(day).child("contents").value.toString()
                     tmpfile = dataSnapshot.child(day).child("url").value.toString()
                     val tmp = tmpfile.split("#")
-                    Log.e("tag", emotion + "/" + title + "/" + content + "/" + filename)
-
                     if (!title.equals("null")) {
                         editTitle1.setText(title)
                         textContent1.setText(content)
                         if (!tmpfile.equals("null") && !tmpfile.equals("") && !tmpfile.equals(null)) {
-                            Log.e("temp", "$tmpfile")
 
                             for (i in 1 until tmp.size) {
                                 imageRef.child(tmp[i]).downloadUrl.addOnSuccessListener {
@@ -87,7 +84,7 @@ class ViewDiary : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val menuInflater: MenuInflater = getMenuInflater()
-        menuInflater.inflate(R.menu.diary_menu, menu)
+        menuInflater.inflate(R.menu.fix_menu, menu)
         return true
     }
 
@@ -95,7 +92,7 @@ class ViewDiary : AppCompatActivity() {
         if (item != null) {
             return when (item.itemId) {
                 R.id.fix -> {
-                   // fix()
+                     fix()
                     true
                 }
                 else -> super.onOptionsItemSelected(item)
@@ -105,8 +102,11 @@ class ViewDiary : AppCompatActivity() {
     }
 
     fun fix(){
-        //var intent = Intent(this, WriteDiary::class.java)
-        //startActivity(intent)
+        var intent = Intent(this, WriteDiary::class.java)
+        intent.putExtra("date", date)
+        startActivity(intent)
+
+
 
     }
 }

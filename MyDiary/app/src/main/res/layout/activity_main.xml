@@ -25,63 +25,61 @@
             android:textColor="#BAAFA1"
             android:textSize="65sp"
             android:textStyle="bold" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="80dp">
-        <EditText
-            android:id="@+id/emailText"
-            android:layout_width="245dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:text="asd@naver.com"
-            android:textColor="@android:color/black"
-            android:textCursorDrawable="@android:color/black" />
-
-        <EditText
-            android:id="@+id/passwd"
-            android:layout_width="245dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:text="qwer1234"
-            android:gravity="center"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="@android:color/black" />
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp">
-
-            <Button
-                android:id="@+id/loginbtn"
-                android:layout_width="103dp"
-                android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="70dp">
+            <EditText
+                android:id="@+id/emailText"
+                android:layout_width="245dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:background="@drawable/login_button"
-                android:text="login"
-                android:textColor="#BAAFA1" />
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@android:color/black" />
 
-            <Button
-                android:id="@+id/btn_create"
-                android:layout_width="103dp"
-                android:layout_height="wrap_content"
+            <EditText
+                android:id="@+id/passwd"
+                android:layout_width="245dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/login_button"
-                android:text="sign up"
-                android:textColor="#BAAFA1" />
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/loginbtn"
+                    android:layout_width="103dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/login_button"
+                    android:text="login"
+                    android:textColor="#BAAFA1" />
+
+                <Button
+                    android:id="@+id/btn_create"
+                    android:layout_width="103dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/login_button"
+                    android:text="sign up"
+                    android:textColor="#BAAFA1" />
+            </LinearLayout>
+
         </LinearLayout>
-
-         </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

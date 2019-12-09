@@ -8,26 +8,22 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import com.google.android.gms.tasks.OnSuccessListener
-import android.util.Log
 
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.viewpager.widget.ViewPager
-import com.example.mydiary.ui.main.GlideApp
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.content_diary.*
-import kotlinx.android.synthetic.main.fragment.*
 import java.lang.Exception
 
 data class Diary(
@@ -82,7 +78,6 @@ class WriteDiary : AppCompatActivity() {
                     content = dataSnapshot.child(day).child("contents").value.toString()
                     tmpfile = dataSnapshot.child(day).child("url").value.toString()
                     val tmp = tmpfile.split("#")
-                    Log.e("tag", emotion + "/" + title + "/" + content + "/" + filename)
 
                     if (!title.equals("null")) {
                         editTitle.text.clear()
@@ -90,7 +85,6 @@ class WriteDiary : AppCompatActivity() {
                         editTitle.setText(title)
                         textContent.setText(content)
                         if (!tmpfile.equals("null") && !tmpfile.equals("") && !tmpfile.equals(null)) {
-                            Log.e("temp", "$tmpfile")
 
                             for (i in 1 until tmp.size) {
                                 imageRef.child(tmp[i]).downloadUrl.addOnSuccessListener {
@@ -112,6 +106,10 @@ class WriteDiary : AppCompatActivity() {
             })
 
         }
+
+
+
+
 
         var fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener { moveToPricture() }
@@ -153,7 +151,7 @@ class WriteDiary : AppCompatActivity() {
                 emotion
             ) // title = editTitle의 내용, content = textContent의 내용
             var tmp = tmpfile.split("#")
-            for (i in 0..tmp.size - 2) {
+            for (i in 1..tmp.size - 1) {
                 putTag(tmp[i])
             }
 
@@ -227,6 +225,7 @@ class WriteDiary : AppCompatActivity() {
                         for (i in 0 until data.clipData.itemCount) {
                             val imageUri = data.clipData.getItemAt(i).uri
                             setDataFile(imageUri)
+
                             adapter.addItem(
                                 ImageFragment().apply {
                                     arguments = bundleOf(Pair("image", imageUri))
@@ -251,10 +250,7 @@ class WriteDiary : AppCompatActivity() {
                         tmpfile = "$tmpfile#$filename"
 
                         var ref: StorageReference = imageRef.child(filename)
-                        ref.putFile(file).addOnSuccessListener(OnSuccessListener {
-                            Toast.makeText(this, "성공했습니다", Toast.LENGTH_LONG).show()
-
-                        })
+                        ref.putFile(file)
                     }
 
                 } catch (e: Exception) {
@@ -272,7 +268,7 @@ class WriteDiary : AppCompatActivity() {
         if (!findViewById<EditText>(R.id.tag).text.equals("")) {
             var tmp = tag.text.trim().split("#")
             for (i in 1..tmp.size - 1) {
-                val ref1 = hashPicture.child(tmp[i]).child(fname).setValue(fname)
+                val ref1 = hashPicture.child(tmp[i]).push().setValue(fname)
             }
         }
     }

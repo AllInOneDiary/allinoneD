@@ -96,11 +96,6 @@ class Calendar : Fragment() {
                             startActivity(i)
                         }
                         R.id.emotion -> {
-                            Toast.makeText(
-                                getContext(),
-                                "You Clicked : " + item.title,
-                                Toast.LENGTH_SHORT
-                            ).show()
                             emotion.visibility = View.VISIBLE
                             schedule.visibility = View.GONE
 
@@ -116,7 +111,6 @@ class Calendar : Fragment() {
                     save_Btn.visibility = View.INVISIBLE
                     contextEditText.visibility = View.INVISIBLE
                     popupMenu.show()
-                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show() //날짜 터치시 알림표시로 나타내기
 
                     save_Btn.setOnClickListener {
                         //저장 버튼이 클릭되면

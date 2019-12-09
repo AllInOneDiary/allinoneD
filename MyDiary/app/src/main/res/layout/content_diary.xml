@@ -28,6 +28,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#968d81"
@@ -36,8 +37,9 @@
 
         <EditText
             android:id="@+id/editTitle"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
             android:focusedByDefault="true"
             android:hint="오늘의 제목"
@@ -46,9 +48,11 @@
 
         <EditText
             android:id="@+id/textContent"
+            android:gravity="top"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="309dp"
             android:layout_below="@+id/editTitle"
+            android:layout_weight="2"
             android:background="@null"
             android:hint="내용"
             android:padding="5dp"
@@ -70,8 +74,8 @@
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
-            android:layout_width="216dp"
-            android:layout_height="141dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,18 +84,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.192" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="해쉬_태그"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.056"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.688" />
 
         <EditText
             android:id="@+id/tag"

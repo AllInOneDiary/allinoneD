@@ -40,7 +40,6 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
                 return true
             }
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Log.i(tag, "query:"+ query.toString())
                 hash = query.toString()
                 hashRef.addListenerForSingleValueEvent(object: ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -60,6 +59,7 @@ class SearchHash : Fragment() , AdapterView.OnItemSelectedListener{
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
+
 
                     }
 
