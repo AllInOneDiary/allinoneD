@@ -19,50 +19,25 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/fab_margin"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:text="사진 목록"
-            android:fontFamily="@font/font4"
-            android:textColor="@android:color/darker_gray"/>
+            android:layout_margin="@dimen/fab_margin"
+            android:textSize="40dp"
+            android:text="사진목록"
+            android:gravity="center"
+            android:fontFamily="@font/font4" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Spinner
-                android:id="@+id/spinner_year"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="3"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:entries="@array/date_year"
-                android:background="@drawable/btn"/>
-
-            <Spinner
-                android:id="@+id/spinner_month"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="3"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:entries="@array/date_month"
-                android:background="@drawable/btn"/>
-
-            <Button
-                android:id="@+id/search_diary"
-                android:layout_width="80dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="3"
-                android:background="@drawable/btn"
-                android:text="조회" />
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
         </LinearLayout>
         <ListView
             android:id="@+id/searchlist"

@@ -6,7 +6,6 @@ import androidx.viewpager.widget.ViewPager
 import com.example.mydiary.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
-
 class ViewPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

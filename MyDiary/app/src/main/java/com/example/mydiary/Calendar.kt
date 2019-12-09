@@ -1,5 +1,4 @@
 package com.example.mydiary
-
 import android.annotation.SuppressLint
 import android.content.Context.MODE_NO_LOCALIZED_COLLATORS
 import android.content.Intent
@@ -12,28 +11,31 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.add_schedule.*
+
+
 import kotlinx.android.synthetic.main.add_schedule.view.*
 import kotlinx.android.synthetic.main.calendar.*
+
+
 import kotlinx.android.synthetic.main.calendar.view.*
 import kotlinx.android.synthetic.main.emotion_select.*
+
+
+import java.io.FileOutputStream
 import java.util.*
-
-
 data class Schedule(
     var comment : String = ""
 )
-
 class Calendar : Fragment() {
+    lateinit var root: DatabaseReference
     var name = " "
-    var textSave =""
     var fname: String = ""
     var str: String = ""
-    var comment: String = ""
-    lateinit var root: DatabaseReference
+    var textSave =""
     lateinit var rootT: DatabaseReference
     lateinit var txtRef: DatabaseReference
     lateinit var SchRef: DatabaseReference
-
+    var comment: String = ""
     var year = 0
     var month = 0
     var day = 0
@@ -76,7 +78,8 @@ class Calendar : Fragment() {
                 month = m + 1
                 year = y
                 day = d
-                val msg: String = year.toString() + "/" + month.toString() + "/" + day.toString()
+                val msg: String =
+                    year.toString() + "/" + month.toString() + "/" + day.toString()
 
                 val popupMenu = PopupMenu(getContext(), view)
                 popupMenu.menuInflater.inflate(R.menu.option_menu, popupMenu.menu)
@@ -93,9 +96,16 @@ class Calendar : Fragment() {
                             startActivity(i)
                         }
                         R.id.emotion -> {
+                            Toast.makeText(
+                                getContext(),
+                                "You Clicked : " + item.title,
+                                Toast.LENGTH_SHORT
+                            ).show()
                             emotion.visibility = View.VISIBLE
                             schedule.visibility = View.GONE
+
                             emotionSelect()
+
                         }
                     }
                     true
@@ -106,43 +116,45 @@ class Calendar : Fragment() {
                     save_Btn.visibility = View.INVISIBLE
                     contextEditText.visibility = View.INVISIBLE
                     popupMenu.show()
+                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show() //날짜 터치시 알림표시로 나타내기
 
                     save_Btn.setOnClickListener {
                         //저장 버튼이 클릭되면
                         saveDiary(fname) //saveDiary 메소드 호출
-                        Toast.makeText(activity, fname + "데이터를 저장했습니다.", Toast.LENGTH_LONG).show()
-                        str = contextEditText.getText().toString()
+                        Toast.makeText(activity, fname + "데이터를 저장했습니다.", Toast.LENGTH_LONG)
+                            .show()
+                        str = contextEditText.getText()
+                            .toString()
 
                         textView2.text = "${str}" // textView에 str 출력
-                        textView2.visibility = View.VISIBLE
                         save_Btn.visibility = View.INVISIBLE
                         cha_Btn.visibility = View.VISIBLE
                         del_Btn.visibility = View.VISIBLE
                         contextEditText.visibility = View.VISIBLE
+                        textView2.visibility = View.VISIBLE
 
                     }
                     cha_Btn.setOnClickListener {
                         // 수정 버튼을 누를 시
                         saveDiary(fname)
-                        contextEditText.setText(textSave) // editText에 textView에 저장된 내용을 출력
+                        contextEditText.visibility = View.VISIBLE
                         textView2.visibility = View.INVISIBLE
+                        contextEditText.setText(textSave) // editText에 textView에 저장된 내용을 출력
                         cha_Btn.visibility = View.VISIBLE
                         del_Btn.visibility = View.VISIBLE
-                        contextEditText.visibility = View.VISIBLE
-
                     }
 
                     del_Btn.setOnClickListener {
-                        removeDiary(fname)
-                        contextEditText.setText("")
                         textView2.visibility = View.INVISIBLE
+                        contextEditText.setText("")
+                        contextEditText.visibility = View.VISIBLE
                         save_Btn.visibility = View.VISIBLE
                         cha_Btn.visibility = View.INVISIBLE
                         del_Btn.visibility = View.INVISIBLE
-                        contextEditText.visibility = View.VISIBLE
-
+                        removeDiary(fname)
                         Toast.makeText(activity, fname + "데이터를 삭제했습니다.", Toast.LENGTH_LONG).show()
                     }
+
                 }
 
             }
@@ -159,6 +171,7 @@ class Calendar : Fragment() {
                     textSave=p0.getValue().toString()
                     contextEditText.setText(textSave)
                     with(schedule){
+
                         save_Btn.visibility = View.INVISIBLE  //저장 버튼이 Visible
                         cha_Btn.visibility = View.VISIBLE //수정 버튼이 invisible
                         del_Btn.visibility = View.VISIBLE //삭제 버튼이 invisible
@@ -167,9 +180,11 @@ class Calendar : Fragment() {
                 }
                 else{
                     with(schedule){
+
                         save_Btn.visibility = View.VISIBLE  //저장 버튼이 Visible
                         cha_Btn.visibility = View.INVISIBLE //수정 버튼이 invisible
                         del_Btn.visibility = View.INVISIBLE //삭제 버튼이 invisible
+
                     }
 
                 }
@@ -210,6 +225,16 @@ class Calendar : Fragment() {
 
         SchRef = rootT.child("Schedule").child("$year$month").child(day.toString())
         SchRef.removeValue()
+        var fos: FileOutputStream? = null
+        try {
+            fos = activity?.openFileOutput(readyDay, MODE_NO_LOCALIZED_COLLATORS)//MODE_PRIVATE
+            var content: String = ""
+            fos?.write(content.toByteArray())
+            fos?.close()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
     fun emotionSelect() {
         root = FirebaseDatabase.getInstance().reference.child(UserModel.uid)

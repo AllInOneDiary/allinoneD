@@ -23,5 +23,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:backgroundTint="#EAE9DA"
-        app:srcCompat="@drawable/camera"/>
+        app:srcCompat="@drawable/camera" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

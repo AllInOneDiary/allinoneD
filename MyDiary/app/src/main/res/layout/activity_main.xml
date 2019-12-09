@@ -18,19 +18,23 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="176dp"
+            android:layout_height="300dp"
             android:fontFamily="@font/font1"
             android:gravity="center"
             android:text="All In One\nDiary"
             android:textColor="#BAAFA1"
-            android:textSize="45sp" />
-
+            android:textSize="65sp"
+            android:textStyle="bold" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="80dp">
         <EditText
             android:id="@+id/emailText"
             android:layout_width="245dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:gravity="center"
             android:hint="Email"
@@ -55,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="20dp">
 
             <Button
                 android:id="@+id/loginbtn"
@@ -77,7 +81,7 @@
                 android:textColor="#BAAFA1" />
         </LinearLayout>
 
+         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

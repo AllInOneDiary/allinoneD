@@ -2,22 +2,19 @@ package com.example.mydiary
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.animation.Easing
-
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.database.*
-
 import kotlinx.android.synthetic.main.emotion_result.view.*
-import kotlinx.android.synthetic.main.emotion_result.view.chart_spinner_m
-import kotlinx.android.synthetic.main.emotion_result.view.chart_spinner_y
 import kotlinx.android.synthetic.main.emotion_result.view.search_chart as search_chart1
 
 
@@ -80,6 +77,9 @@ class Emotion : Fragment() {
         }
         inf.search_chart1.setOnClickListener {
             emotionResult(yearMonth)
+
+            Log.d(tag,yearMonth)
+            Toast.makeText(getContext(),yearMonth,Toast.LENGTH_LONG)
         }
 
         return inf

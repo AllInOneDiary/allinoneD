@@ -18,16 +18,16 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/fab_margin"
-            android:textSize="30dp"
-            android:textStyle="bold"
+            android:textSize="40dp"
             android:text="일기 목록"
-            android:fontFamily="@font/font4"
-            android:textColor="@android:color/darker_gray"/>
+            android:gravity="center"
+            android:fontFamily="@font/font4" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,11 +62,14 @@
         <ListView
             android:id="@+id/diarylistview"
             android:layout_width="match_parent"
-            android:layout_height="509dp"
+            android:layout_height="510dp"
+            android:layout_marginTop="10dp"
+            android:listSelector="#dddccb"
             android:choiceMode="singleChoice"
             android:divider="#968d81"
-            android:dividerHeight="1.5dp"/>
+            android:dividerHeight="3dp" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"

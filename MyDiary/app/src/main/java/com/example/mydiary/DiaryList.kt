@@ -23,9 +23,10 @@ class DiaryList : Fragment(){
     lateinit var diarySearch : ListView
     lateinit var diaryadapter:DiaryListViewAdapter
     lateinit var diaryRoot: DatabaseReference
-    lateinit var day: String
+    var date = ""
     var year:String=""
     var month:String=""
+    var day=""
     val hashArray = ArrayList<Hash>() // 검색한 해시와 해시의 사진 url을 저장하는 배열
     var diaryList = arrayListOf<DiaryListViewItem>()
 
@@ -60,11 +61,13 @@ class DiaryList : Fragment(){
                     5 -> year = "2020"
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 year="2016"
                 month="1"
             }
         }
+
         monthSpinner = inf.spinner_month
         monthAdapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -88,11 +91,12 @@ class DiaryList : Fragment(){
                 month = "1"
             }
         }
+
         diaryadapter = DiaryListViewAdapter(context, diaryList)
         diarySearch = inf.diarylistview
         diarySearch.adapter = diaryadapter
+        // click button
         inf.search_diary.setOnClickListener(View.OnClickListener {
-            Toast.makeText(context, year+month, Toast.LENGTH_SHORT).show()
             diaryRoot = FirebaseDatabase.getInstance().reference.child(UserModel.uid).child("Diary")
             diaryRoot.addValueEventListener(object: ValueEventListener{
                 @Override
@@ -103,10 +107,10 @@ class DiaryList : Fragment(){
                         for (child in dataChild.children) { // 1, 2, ...
                             day = child.key.toString()
                             val title = child.child("title").value.toString()
-                            val date = year + "/" + month + "/" + day
-                            val content = child.child("contents").value.toString()
+                            date = "${year}/${month}/${day}"
+
                             if(child.hasChild("title")){
-                                diaryList.add(DiaryListViewItem(title, content, date, day))
+                                diaryList.add(DiaryListViewItem(title, date))
                             }
                         }
                         diaryadapter.notifyDataSetChanged()
@@ -114,21 +118,23 @@ class DiaryList : Fragment(){
                     else
                         Toast.makeText(context, "해당 달의 일기 목록이 존재하지 않습니다", Toast.LENGTH_SHORT).show()
                 }
-                @Override
                 override fun onCancelled(p0: DatabaseError) {}
             })
-            diarySearch.setOnItemClickListener(DiaryClickListener())
+
         })
+
+        diarySearch.setOnItemClickListener(MoveListener())
+
         return inf
     }
-    inner class DiaryClickListener: AdapterView.OnItemClickListener{
+    inner class MoveListener : AdapterView.OnItemClickListener{
         @Override
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            var intent = Intent(context, WriteDiary::class.java)
-            val d = diaryList[position].day
-            intent.putExtra("date", year + "/" + month + "/" + d)
-
+            val intent = Intent(context, ViewDiary::class.java)
+            val item = diaryList[position]
+            intent.putExtra("date", item.date)
             startActivity(intent)
         }
     }
+
 }

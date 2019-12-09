@@ -36,7 +36,8 @@
             android:singleLine="true"
             android:text="이상한 나라의 앨리스 - 내 기분은 내가 정해. 오늘 나는 행복으로 할래."
             android:textColor="#968d81"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <ImageButton
             android:id="@+id/nextTXT"

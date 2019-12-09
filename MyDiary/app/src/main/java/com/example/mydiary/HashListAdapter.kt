@@ -22,7 +22,6 @@ class HashListAdatper(val context: Context?, val hashArray:ArrayList<Hash>) : Ba
 
         val imageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://mydiary-1121.appspot.com")
         val image = view.findViewById<ImageView>(R.id.searchItem)
-
         if(!hashValue.equals(null) && !hashValue.equals("")&&context != null) {
             val imageRefChild = imageRef.child(hashValue)
             GlideApp.with(context).load(imageRefChild).into(image)
